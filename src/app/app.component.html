@@ -47,7 +47,8 @@
 
     </div>
     <hr/>
-    <h2><span *ngIf="loadingFollowers">Followers loading...</span><span *ngIf="!loadingFollowers">Followers</span></h2>
+    <h2><span *ngIf="loadingFollowers">Followers loading...</span><span *ngIf="!loadingFollowers">Followers <small *ngIf="selectedUser.followers">({{selectedUser.followers.length}})</small></span>
+    </h2>
     <template [ngIf]="selectedUser.followers">
       <div class="row">
         <div *ngFor="let follower of selectedUser.followers" class="col-xs-6 col-md-2">
