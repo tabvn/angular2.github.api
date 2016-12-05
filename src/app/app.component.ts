@@ -70,6 +70,7 @@ export class AppComponent implements OnInit {
         if (s == 'home') {
 
             this.selectedUser = new User();
+            this.users = this.cache.users;
         }
     }
 
