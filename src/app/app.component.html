@@ -77,7 +77,7 @@
       <div *ngFor="let user of users" class="col-xs-6 col-md-2">
 
         <div class="thumbnail">
-          <img [src]="user.avatar_url">
+          <img *ngIf="user.avatar_url" style="cursor: pointer;" (click)="viewUser(user)" [src]="user.avatar_url">
           <div class="caption">
             <h4>{{user.login}}</h4>
             <p>
