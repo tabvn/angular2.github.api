@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "./models/user";
 import {UserService} from "./services/user.service";
 import {Subject} from "rxjs";
+import {Title} from "@angular/platform-browser";
 
 @Component({
     selector: 'app-root',
@@ -9,7 +10,10 @@ import {Subject} from "rxjs";
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    title = 'Welcome to Github Page';
+    defaultPageTitle = 'Welcome to Github Page';
+
+
+    title = this.defaultPageTitle;
 
 
     cache = {
@@ -23,7 +27,7 @@ export class AppComponent implements OnInit {
     loadingFollowers: boolean = false;
 
 
-    constructor(private userService: UserService) {
+    constructor(private pageTitle: Title, private userService: UserService) {
 
         this.search.debounceTime(200).distinctUntilChanged().subscribe((searchTerm) => {
 
@@ -60,10 +64,23 @@ export class AppComponent implements OnInit {
             this.go('home');
 
             this.search.next(q);
+
+
+            this.setPageTitle("Searching for: " + q);
+
+
         } else {
             //if empty search box we restore first users
             this.users = this.cache.users;
+
+            this.setPageTitle(this.defaultPageTitle);
         }
+
+    }
+
+    setPageTitle(title: string) {
+        this.title = title;
+        this.pageTitle.setTitle(this.title);
 
     }
 
@@ -72,13 +89,17 @@ export class AppComponent implements OnInit {
         if (s == 'home') {
             this.selectedUser = new User();
             this.users = this.cache.users;
+
+            this.setPageTitle(this.defaultPageTitle);
         }
+
 
     }
 
     viewUser(user: User) {
 
         this.selectedUser = user;
+        this.setPageTitle(user.login);
 
         let userInCache: User = this.findUserInCache(user);
         // let find if existing in cache we return and no longer call to api again
