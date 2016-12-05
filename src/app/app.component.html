@@ -53,7 +53,7 @@
         <div *ngFor="let follower of selectedUser.followers" class="col-xs-6 col-md-2">
 
           <div class="thumbnail">
-            <img [src]="follower.avatar_url">
+            <img style="cursor: pointer;" (click)="viewUser(follower)" [src]="follower.avatar_url">
             <div class="caption">
               <h4>{{follower.login}}</h4>
               <p>
