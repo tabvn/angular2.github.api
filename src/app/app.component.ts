@@ -57,6 +57,8 @@ export class AppComponent implements OnInit {
     onSearch(q: string) {
 
         if (q !== "") {
+            this.go('home');
+
             this.search.next(q);
         } else {
             //if empty search box we restore first users
