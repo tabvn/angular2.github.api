@@ -68,7 +68,6 @@ export class AppComponent implements OnInit {
     go(s: string) {
 
         if (s == 'home') {
-
             this.selectedUser = new User();
             this.users = this.cache.users;
         }
@@ -118,7 +117,7 @@ export class AppComponent implements OnInit {
     /**
      * Find user if exist in cache we return user object
      * @param user
-     * @returns {boolean}
+     * @returns User
      */
     findUserInCache(user: User): User {
 
