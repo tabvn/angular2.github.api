@@ -9,7 +9,7 @@ import {Subject} from "rxjs";
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    title = 'Welcome to Github';
+    title = 'Welcome to Github Page';
 
 
     cache = {
@@ -120,13 +120,11 @@ export class AppComponent implements OnInit {
      * @returns User
      */
     findUserInCache(user: User): User {
-
         for (var i = 0; i < this.cache.selectedUser.length; i++) {
             if (this.cache.selectedUser[i].login == user.login) {
                 return this.cache.selectedUser[i];
             }
         }
-
         return null;
     }
 }
